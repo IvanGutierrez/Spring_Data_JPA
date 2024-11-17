@@ -1,10 +1,8 @@
 package com.debuggeandoideas.gadget_plus.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 
@@ -22,4 +20,10 @@ public class BillEntity {
 
     @Column(name = "client_rfc", length = 14, nullable = false)
     private String rfc;
+
+    @ToString.Exclude
+    @OneToOne(mappedBy = "bill",
+                cascade = CascadeType.ALL,
+                fetch = FetchType.EAGER)
+    private OrderEntity order;
 }

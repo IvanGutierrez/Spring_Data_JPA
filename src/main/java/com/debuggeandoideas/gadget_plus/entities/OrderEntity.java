@@ -19,7 +19,7 @@ public class OrderEntity {
     @Column(name = "client_name", length = 32, nullable = false)
     private String clientName;
 
-//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_bill", nullable = false, unique = true)
-//    private BillEntity bill;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_bill", nullable = false, unique = true)
+    private BillEntity bill;
 }

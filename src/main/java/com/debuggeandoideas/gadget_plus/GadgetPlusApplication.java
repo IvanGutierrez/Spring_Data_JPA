@@ -1,5 +1,6 @@
 package com.debuggeandoideas.gadget_plus;
 
+import com.debuggeandoideas.gadget_plus.repositories.BillRepository;
 import com.debuggeandoideas.gadget_plus.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,6 +13,9 @@ public class GadgetPlusApplication implements CommandLineRunner {
 	@Autowired
 	private OrderRepository orderRepository;
 
+	@Autowired
+	private BillRepository billRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(GadgetPlusApplication.class, args);
 	}
@@ -19,5 +23,6 @@ public class GadgetPlusApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		this.orderRepository.findAll().forEach(System.out::println);
+//		this.billRepository.findAll().forEach(bill -> System.out.println(bill.toString()));
 	}
 }
