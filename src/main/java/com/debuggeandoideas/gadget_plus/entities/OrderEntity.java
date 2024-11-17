@@ -1,10 +1,13 @@
 package com.debuggeandoideas.gadget_plus.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "orders")
+@Data
 public class OrderEntity {
 
     @Id
