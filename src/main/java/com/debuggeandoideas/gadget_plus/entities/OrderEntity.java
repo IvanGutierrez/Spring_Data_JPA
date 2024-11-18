@@ -1,13 +1,19 @@
 package com.debuggeandoideas.gadget_plus.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class OrderEntity {
 
     @Id
@@ -19,7 +25,7 @@ public class OrderEntity {
     @Column(name = "client_name", length = 32, nullable = false)
     private String clientName;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_bill", nullable = false, unique = true)
     private BillEntity bill;
 }

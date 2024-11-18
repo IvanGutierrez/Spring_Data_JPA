@@ -1,11 +1,16 @@
 package com.debuggeandoideas.gadget_plus;
 
+import com.debuggeandoideas.gadget_plus.entities.BillEntity;
+import com.debuggeandoideas.gadget_plus.entities.OrderEntity;
 import com.debuggeandoideas.gadget_plus.repositories.BillRepository;
 import com.debuggeandoideas.gadget_plus.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class GadgetPlusApplication implements CommandLineRunner {
@@ -23,6 +28,22 @@ public class GadgetPlusApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		this.orderRepository.findAll().forEach(System.out::println);
-//		this.billRepository.findAll().forEach(bill -> System.out.println(bill.toString()));
+		this.billRepository.findAll().forEach(bill -> System.out.println(bill.toString()));
+
+		var bill = BillEntity.builder()
+				.rfc("AABA850513")
+				.totalAmount(BigDecimal.TEN)
+				.id("b-17")
+				.build();
+
+//		this.billRepository.save(bill);
+
+		var order = OrderEntity.builder()
+				.createdAt(LocalDateTime.now())
+				.clientName("Donald Trump")
+				.bill(bill)
+				.build();
+
+		this.orderRepository.save(order);
 	}
 }
