@@ -47,12 +47,6 @@ public class GadgetPlusApplication implements CommandLineRunner {
 		this.orderRepository.save(order);*/
 
 		var order = this.orderRepository.findById(17L).get();
-		System.out.println("PRE-PERSIST: " + order.getClientName());
-		order.setClientName("Barack Obama");
-		order.getBill().setRfc("XXXX000000");
-		this.orderRepository.save(order);
-
-		var order2 = this.orderRepository.findById(17L).get();
-		System.out.println("POST-PERSIST: " + order2.getClientName());
+		this.orderRepository.delete(order);
 	}
 }

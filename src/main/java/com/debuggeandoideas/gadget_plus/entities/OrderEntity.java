@@ -25,7 +25,10 @@ public class OrderEntity {
     @Column(name = "client_name", length = 32, nullable = false)
     private String clientName;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.REMOVE})
     @JoinColumn(name = "id_bill", nullable = false, unique = true)
     private BillEntity bill;
+
+    //Cascade PERSIST es para los save
+    //Cascade MERGE es para los Update, cuando quieres persistir una entidad referenciada
 }
