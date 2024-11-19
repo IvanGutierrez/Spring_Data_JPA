@@ -34,7 +34,8 @@ public class OrderEntity {
 
     @OneToMany(mappedBy = "order",
                 fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
+                cascade = CascadeType.ALL,
+                orphanRemoval = true)
     private List<ProductEntity> product = new ArrayList<>();
 
     //Cascade PERSIST es para los save

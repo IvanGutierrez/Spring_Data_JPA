@@ -32,14 +32,16 @@ public class GadgetPlusApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		var order = this.orderRepository.findById(1L).orElseThrow();
 
-		var product1 = ProductEntity.builder().quantity(BigInteger.ONE).build();
-		var product2 = ProductEntity.builder().quantity(BigInteger.TWO).build();
+//		var product1 = ProductEntity.builder().quantity(BigInteger.ONE).build();
+//		var product2 = ProductEntity.builder().quantity(BigInteger.TWO).build();
+//		var product3 = ProductEntity.builder().quantity(BigInteger.TEN).build();
 
-		var products = List.of(product1, product2);
+//		var products = List.of(product1, product2, product3);
 
-		order.setProduct(products);
+//		order.setProduct(products);
 
-		products.forEach(producto -> producto.setOrder(order));
+//		products.forEach(producto -> producto.setOrder(order));
+		order.getProduct().remove(0);
 
 		this.orderRepository.save(order);
 	}
