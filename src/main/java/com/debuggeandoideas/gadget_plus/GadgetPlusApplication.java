@@ -30,7 +30,7 @@ public class GadgetPlusApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var order = this.orderRepository.findById(1L).orElseThrow();
+		var order = this.orderRepository.findById(2L).orElseThrow();
 
 //		var product1 = ProductEntity.builder().quantity(BigInteger.ONE).build();
 //		var product2 = ProductEntity.builder().quantity(BigInteger.TWO).build();

@@ -22,7 +22,7 @@ public class ProductEntity {
 
     private BigInteger quantity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_order")
     private OrderEntity order;
 }
