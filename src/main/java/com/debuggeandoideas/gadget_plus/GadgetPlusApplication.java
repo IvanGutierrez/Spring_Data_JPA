@@ -2,6 +2,7 @@ package com.debuggeandoideas.gadget_plus;
 
 import com.debuggeandoideas.gadget_plus.entities.BillEntity;
 import com.debuggeandoideas.gadget_plus.entities.OrderEntity;
+import com.debuggeandoideas.gadget_plus.entities.ProductEntity;
 import com.debuggeandoideas.gadget_plus.repositories.BillRepository;
 import com.debuggeandoideas.gadget_plus.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 public class GadgetPlusApplication implements CommandLineRunner {
@@ -27,26 +30,17 @@ public class GadgetPlusApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*this.orderRepository.findAll().forEach(System.out::println);
-		this.billRepository.findAll().forEach(bill -> System.out.println(bill.toString()));
+		var order = this.orderRepository.findById(1L).orElseThrow();
 
-		var bill = BillEntity.builder()
-				.rfc("AABA850513")
-				.totalAmount(BigDecimal.TEN)
-				.id("b-17")
-				.build();
+		var product1 = ProductEntity.builder().quantity(BigInteger.ONE).build();
+		var product2 = ProductEntity.builder().quantity(BigInteger.TWO).build();
 
-//		this.billRepository.save(bill);
+		var products = List.of(product1, product2);
 
-		var order = OrderEntity.builder()
-				.createdAt(LocalDateTime.now())
-				.clientName("Donald Trump")
-				.bill(bill)
-				.build();
+		order.setProduct(products);
 
-		this.orderRepository.save(order);*/
+		products.forEach(producto -> producto.setOrder(order));
 
-		var order = this.orderRepository.findById(17L).get();
-		this.orderRepository.delete(order);
+		this.orderRepository.save(order);
 	}
 }

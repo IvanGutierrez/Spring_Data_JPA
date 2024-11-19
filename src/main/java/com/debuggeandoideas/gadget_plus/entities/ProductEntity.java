@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "products")
@@ -19,7 +20,7 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BigDecimal quantity;
+    private BigInteger quantity;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_order")
