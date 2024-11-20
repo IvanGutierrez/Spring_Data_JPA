@@ -3,6 +3,8 @@ package com.debuggeandoideas.gadget_plus.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "categories")
 @Getter
@@ -20,4 +22,7 @@ public class CategoryEntity {
     private CodeCategoryEnum code;
 
     private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
+    private List<ProductCatalogEntity> productCatalog;
 }
