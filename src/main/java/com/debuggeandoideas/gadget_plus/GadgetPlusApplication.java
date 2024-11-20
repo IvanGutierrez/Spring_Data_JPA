@@ -35,26 +35,17 @@ public class GadgetPlusApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var productCatalog1 = this.productCatalogRepository.findAll().get(0);
-		var productCatalog2 = this.productCatalogRepository.findAll().get(4);
-		var productCatalog3 = this.productCatalogRepository.findAll().get(7);
+		final var HOME = this.categoryRepository.findById(1L).orElseThrow();
+		final var OFFICE = this.categoryRepository.findById(2L).orElseThrow();
 
-		var order = this.orderRepository.findById(1L).get();
-
-		var product1 = ProductEntity.builder().quantity(BigInteger.ONE).build();
-		var product2 = ProductEntity.builder().quantity(BigInteger.TWO).build();
-		var product3 = ProductEntity.builder().quantity(BigInteger.TEN).build();
-
-		var products = List.of(product1, product2, product3);
-
-		product1.setCatalog(productCatalog1);
-		product2.setCatalog(productCatalog2);
-		product3.setCatalog(productCatalog3);
-
-		order.setProduct(products);
-
-		products.forEach(p -> p.setOrder(order));
-
-		this.orderRepository.save(order);
+		this.productCatalogRepository.findAll().forEach(product ->{
+			if (product.getDescription().contains("home")){
+				product.addCategory(HOME);
+			}
+			if (product.getDescription().contains("office")){
+				product.addCategory(OFFICE);
+			}
+			this.productCatalogRepository.save(product);
+		});
 	}
 }
