@@ -25,4 +25,8 @@ public class ProductEntity {
     @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_order")
     private OrderEntity order;
+
+    @OneToOne
+    @JoinColumn(name = "id_product_catalog")
+    private ProductCatalogEntity catalog;
 }

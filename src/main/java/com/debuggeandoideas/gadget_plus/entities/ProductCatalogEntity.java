@@ -26,14 +26,10 @@ public class ProductCatalogEntity {
 
     @Column(name = "brand_name", length = 64)
     private String brand;
-
     private String description;
-
     private BigDecimal price;
-
-    private LocalDate launchDate;
-
+    private LocalDate launchingDate;
     private Boolean isDiscount;
-
     private Short rating;
+
 }
