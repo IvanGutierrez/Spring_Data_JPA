@@ -36,19 +36,26 @@ public class GadgetPlusApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		var order = this.orderRepository.findById(2L).orElseThrow();
-		this.productCatalogRepository.findAll().forEach(p -> System.out.println(p));
-//		var product1 = ProductEntity.builder().quantity(BigInteger.ONE).build();
-//		var product2 = ProductEntity.builder().quantity(BigInteger.TWO).build();
-//		var product3 = ProductEntity.builder().quantity(BigInteger.TEN).build();
+		var productCatalog1 = this.productCatalogRepository.findAll().get(0);
+		var productCatalog2 = this.productCatalogRepository.findAll().get(4);
+		var productCatalog3 = this.productCatalogRepository.findAll().get(7);
 
-//		var products = List.of(product1, product2, product3);
+		var order = this.orderRepository.findById(1L).get();
 
-//		order.setProduct(products);
+		var product1 = ProductEntity.builder().quantity(BigInteger.ONE).build();
+		var product2 = ProductEntity.builder().quantity(BigInteger.TWO).build();
+		var product3 = ProductEntity.builder().quantity(BigInteger.TEN).build();
 
-//		products.forEach(producto -> producto.setOrder(order));
-//		order.getProduct().remove(0);
+		var products = List.of(product1, product2, product3);
 
-//		this.orderRepository.save(order);
+		product1.setCatalog(productCatalog1);
+		product2.setCatalog(productCatalog2);
+		product3.setCatalog(productCatalog3);
+
+		order.setProduct(products);
+
+		products.forEach(p -> p.setOrder(order));
+
+		this.orderRepository.save(order);
 	}
 }

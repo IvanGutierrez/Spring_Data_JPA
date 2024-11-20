@@ -26,7 +26,7 @@ public class ProductEntity {
     @JoinColumn(name = "id_order")
     private OrderEntity order;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_product_catalog")
     private ProductCatalogEntity catalog;
 }
