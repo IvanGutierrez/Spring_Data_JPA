@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,6 +45,10 @@ public class ProductCatalogEntity {
             joinColumns = @JoinColumn(name = "id_product"),
             inverseJoinColumns = @JoinColumn(name = "id_category")
     )
-    private List<CategoryEntity> categories;
+    private List<CategoryEntity> categories = new LinkedList<>();
+
+    public void addCategory(CategoryEntity category){
+        this.categories.add(category);
+    }
 
 }

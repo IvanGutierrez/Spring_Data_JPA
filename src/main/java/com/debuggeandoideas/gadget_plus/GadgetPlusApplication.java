@@ -3,10 +3,7 @@ package com.debuggeandoideas.gadget_plus;
 import com.debuggeandoideas.gadget_plus.entities.BillEntity;
 import com.debuggeandoideas.gadget_plus.entities.OrderEntity;
 import com.debuggeandoideas.gadget_plus.entities.ProductEntity;
-import com.debuggeandoideas.gadget_plus.repositories.BillRepository;
-import com.debuggeandoideas.gadget_plus.repositories.OrderRepository;
-import com.debuggeandoideas.gadget_plus.repositories.ProductCatalogRepository;
-import com.debuggeandoideas.gadget_plus.repositories.ProductRepository;
+import com.debuggeandoideas.gadget_plus.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +26,8 @@ public class GadgetPlusApplication implements CommandLineRunner {
 	private ProductCatalogRepository productCatalogRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GadgetPlusApplication.class, args);
