@@ -12,7 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 @SpringBootApplication
 public class GadgetPlusApplication implements CommandLineRunner {
@@ -35,17 +38,26 @@ public class GadgetPlusApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		final var HOME = this.categoryRepository.findById(1L).orElseThrow();
-		final var OFFICE = this.categoryRepository.findById(2L).orElseThrow();
+//		final var HOME = this.categoryRepository.findById(1L).orElseThrow();
+//		final var OFFICE = this.categoryRepository.findById(2L).orElseThrow();
 
-		this.productCatalogRepository.findAll().forEach(product ->{
-			if (product.getDescription().contains("home")){
-				product.addCategory(HOME);
-			}
-			if (product.getDescription().contains("office")){
-				product.addCategory(OFFICE);
-			}
-			this.productCatalogRepository.save(product);
+//		this.productCatalogRepository.findAll().forEach(product ->{
+//			if (product.getDescription().contains("home")){
+//				product.addCategory(HOME);
+//			}
+//			if (product.getDescription().contains("office")){
+//				product.addCategory(OFFICE);
+//			}
+//			this.productCatalogRepository.save(product);
+//		});
+
+		var random = new Random();
+//		System.out.println(random.nextInt(16));//Me da opcion a 16 no. aleatorios 0-15
+//		System.out.println(random.nextInt(16)+1);//No aleatorios entre 1 y 16
+		var orderRandom = random.nextInt(16)+1;
+		var productsCatalog = new LinkedList<>(this.productCatalogRepository.findAll());
+		IntStream.range(0, productsCatalog.size()).forEach(i->{
+
 		});
 	}
 }
