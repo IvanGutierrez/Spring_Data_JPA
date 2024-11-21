@@ -36,11 +36,14 @@ public class OrderEntity {
                 fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
-    private List<ProductEntity> product = new ArrayList<>();
+    private List<ProductEntity> products = new ArrayList<>();
 
     //Cascade PERSIST es para los save
     //Cascade MERGE es para los Update, cuando quieres persistir una entidad referenciada
 
+    public void addProduct(ProductEntity product){
+        this.products.add(product);
+    }
 
     @Override
     public boolean equals(Object o) {

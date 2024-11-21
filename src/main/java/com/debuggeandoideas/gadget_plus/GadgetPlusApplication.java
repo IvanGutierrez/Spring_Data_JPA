@@ -54,10 +54,22 @@ public class GadgetPlusApplication implements CommandLineRunner {
 		var random = new Random();
 //		System.out.println(random.nextInt(16));//Me da opcion a 16 no. aleatorios 0-15
 //		System.out.println(random.nextInt(16)+1);//No aleatorios entre 1 y 16
-		var orderRandom = random.nextInt(16)+1;
+
 		var productsCatalog = new LinkedList<>(this.productCatalogRepository.findAll());
 		IntStream.range(0, productsCatalog.size()).forEach(i->{
+			var idOrderRandom = random.nextLong(16)+1;
+			var orderRandom = this.orderRepository.findById(idOrderRandom).orElseThrow();
 
+			var product = ProductEntity.builder()
+					.quantity(BigInteger.valueOf(random.nextInt(5)+1))
+					.catalog(productsCatalog.poll())
+					.order(orderRandom)
+					.build();
+
+			orderRandom.addProduct(product);
+			product.setOrder(orderRandom);
+
+			this.orderRepository.save(orderRandom);
 		});
 	}
 }
