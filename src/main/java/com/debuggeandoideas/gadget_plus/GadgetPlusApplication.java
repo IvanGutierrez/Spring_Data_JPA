@@ -31,6 +31,8 @@ public class GadgetPlusApplication implements CommandLineRunner {
 	private ProductRepository productRepository;
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private RejectProductRepository rejectProductRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GadgetPlusApplication.class, args);
@@ -51,10 +53,10 @@ public class GadgetPlusApplication implements CommandLineRunner {
 //			this.productCatalogRepository.save(product);
 //		});
 
-		var random = new Random();
+//		var random = new Random();
 //		System.out.println(random.nextInt(16));//Me da opcion a 16 no. aleatorios 0-15
 //		System.out.println(random.nextInt(16)+1);//No aleatorios entre 1 y 16
-
+/*
 		var productsCatalog = new LinkedList<>(this.productCatalogRepository.findAll());
 		IntStream.range(0, productsCatalog.size()).forEach(i->{
 			var idOrderRandom = random.nextLong(16)+1;
@@ -70,6 +72,7 @@ public class GadgetPlusApplication implements CommandLineRunner {
 			product.setOrder(orderRandom);
 
 			this.orderRepository.save(orderRandom);
-		});
+		}); */
+		this.rejectProductRepository.findAll().forEach(System.out::println);
 	}
 }
